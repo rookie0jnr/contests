@@ -10,9 +10,9 @@ namespace AlienLanguage
     {
         static void Main(string[] args)
         {
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
             {
                 string inputNumbers = inputFile.ReadLine();
                 string[] numbers = inputNumbers.Split(' ');
@@ -55,7 +55,9 @@ namespace AlienLanguage
                     testCases.Add(currentPattern);
                 }
 
-                using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+                //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+                //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
+                using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
                 {
                     for (int i = 0; i < numberOfTestCases; i++)
                     {
