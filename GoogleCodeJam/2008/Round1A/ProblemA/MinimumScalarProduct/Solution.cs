@@ -12,15 +12,15 @@ namespace MinimumScalarProduct
             int numberOfTestCases;
             int outputLineNumber = 1;
 
-            //using (StreamReader inputFile = new StreamReader(@"..\..\A-example-practice.in"))
-            using (StreamReader inputFile = new StreamReader(@"..\..\A-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\A-large-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
             {
                 numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
-                //using (StreamWriter outputFile = new StreamWriter(@"..\..\A-example-practice.out"))
-                using (StreamWriter outputFile = new StreamWriter(@"..\..\A-small-practice.out"))
-                //using (StreamWriter outputFile = new StreamWriter(@"..\..\A-large-practice.out"))
+                //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+                //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
+                using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
                 {
 
                     for (int i = 0; i < numberOfTestCases; i++)
