@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace AlienLanguage
 {
@@ -31,18 +32,56 @@ namespace AlienLanguage
                     string currentTestCase = inputFile.ReadLine();
                     int lengthOfTestCase = currentTestCase.Length;
 
+                    List<string> currentPattern = new List<string>();
                     for (int j = 0; j < lengthOfTestCase; j++)
                     {
- 
+
+                        if (currentTestCase[j] != '(')
+                        {
+                            currentPattern.Add(currentTestCase[j].ToString());
+                        }
+                        else
+                        {
+                            j++;
+                            string current = string.Empty;
+                            while (currentTestCase[j] != ')')
+                            {
+                                current += currentTestCase[j++];
+                            }
+                            currentPattern.Add(current);
+                        }
                     }
 
+                    testCases.Add(currentPattern);
                 }
-
-                
 
                 using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
                 {
-                        //outputFile.WriteLine("Case #" + outputLineNumber++ + ": " + sum);
+                    for (int i = 0; i < numberOfTestCases; i++)
+                    {
+                        int numberOfPossibleMatches = 0;
+
+                        foreach (string knownWord in knownWords)
+                        {
+                            bool canMatch = true;
+                            for (int j = 0; j < numberOfLetters; j++)
+                            {
+                                if (!testCases[i][j].Contains(knownWord[j]))
+                                {
+                                    canMatch = false;
+                                    break;
+                                }
+                            }
+
+                            if (true == canMatch)
+                            {
+                                numberOfPossibleMatches++;
+                            }
+                        }
+
+                        //Console.WriteLine(numberOfPossibleMatches);
+                        outputFile.WriteLine("Case #{0}: {1}",i + 1, numberOfPossibleMatches);
+                    }
                 }
             }
         }
