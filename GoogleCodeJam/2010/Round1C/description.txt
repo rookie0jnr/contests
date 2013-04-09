@@ -1,0 +1,5 @@
+This folder contains the solutions for the GoogleCodeJam (2010, Round 1C) problems.
+The problem sets (along with the inputs) are located here:
+Problem A: http://code.google.com/codejam/contest/619102/dashboard#s=p0
+Problem B: http://code.google.com/codejam/contest/619102/dashboard#s=p1
+Problem C: http://code.google.com/codejam/contest/619102/dashboard#s=p2
