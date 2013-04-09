@@ -11,9 +11,9 @@ namespace RopeIntranet
         {
             List<int> results = new List<int>();
             
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
                 for (int i = 0; i < numberOfTestCases; i++)
@@ -44,9 +44,9 @@ namespace RopeIntranet
                 }
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
             {
                 //Console.WriteLine(numberOfIntersectionPoints);
                 int i = 1;
