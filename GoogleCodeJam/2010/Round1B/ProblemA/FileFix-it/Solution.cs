@@ -9,6 +9,8 @@ namespace FileFix_it
     {
         static void Main(string[] args)
         {
+            List<int> results = new List<int>();
+            
             using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
@@ -25,8 +27,9 @@ namespace FileFix_it
                     for (int i = 0; i < numberOfExistingDirectories; i++)
                     {
                         string fullPathOfExistingDirectory = inputFile.ReadLine();
-                        string[] existingSubDirectories = fullPathOfExistingDirectory.Split('/');
+                        fullPathOfExistingDirectory = fullPathOfExistingDirectory.Substring(1);
 
+                        string[] existingSubDirectories = fullPathOfExistingDirectory.Split('/');
                         int numberOfExistingSubDirectories = existingSubDirectories.Length;
 
                         // check if we have created all the necessary directory levels as Lists in the main List 'existingDirectories'
@@ -49,21 +52,42 @@ namespace FileFix_it
                         }
                     }
 
+                    List<List<string>> existingAndCreatedDirectories = new List<List<string>>(existingDirectories);
+                    int numberOfmkdirs = 0;
                     for (int i = 0; i < numberOfDirectoriesToCreate; i++)
                     {
+                        
+                        int existingAndCreatedDirectoriesCount = existingAndCreatedDirectories.Count;
                         string fullPathOfDirectoryToCreate = inputFile.ReadLine();
+                        fullPathOfDirectoryToCreate = fullPathOfDirectoryToCreate.Substring(1);
                         string[] subDirectoriesToCreate = fullPathOfDirectoryToCreate.Split('/');
 
                         int numberOfSubDirectoriesToCreate = subDirectoriesToCreate.Length;
 
-                        for (int j = 0; j < numberOfDirectoriesToCreate; j++)
+                        for (int j = 0; j < numberOfSubDirectoriesToCreate; j++)
                         {
-                            if (j < existingDirectories.Count)
+                            if (j < existingAndCreatedDirectoriesCount)
                             {
- 
+                                if (!existingAndCreatedDirectories[j].Contains(subDirectoriesToCreate[j]))
+                                {
+                                    existingAndCreatedDirectories[j].Add(subDirectoriesToCreate[j]);
+                                    numberOfmkdirs++;
+                                }
+                            }
+                            else
+                            {
+                                for (int k = 0; k < (numberOfSubDirectoriesToCreate - j); k++)
+                                {
+                                    List<string> currentSubDirectory = new List<string>();
+                                    currentSubDirectory.Add(subDirectoriesToCreate[j + k]);
+                                    existingAndCreatedDirectories.Add(currentSubDirectory);
+                                    numberOfmkdirs++;
+                                }
+                                break;
                             }
                         }
                     }
+                    results.Add(numberOfmkdirs);
 
                     int p = 5;
                 }
@@ -74,8 +98,12 @@ namespace FileFix_it
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
             {
-                //Console.WriteLine(numberOfIntersectionPoints);
-                //outputFile.WriteLine("Case #{0}: {1}", i++, result);
+
+                int i = 1;
+                foreach (int result in results)
+                {
+                    outputFile.WriteLine("Case #{0}: {1}", i++, result);
+                }
             }
         }
     }
