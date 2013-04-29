@@ -1,0 +1,6 @@
+This folder contains the solutions for the GoogleCodeJam (2013, Qualification Round) problems.
+The problem sets (along with the inputs) are located here:
+Problem A: http://code.google.com/codejam/contest/2270488/dashboard#s=p0
+Problem B: http://code.google.com/codejam/contest/2270488/dashboard#s=p1
+Problem C: http://code.google.com/codejam/contest/2270488/dashboard#s=p2
+Problem D: http://code.google.com/codejam/contest/2270488/dashboard#s=p3
