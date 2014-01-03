@@ -35,13 +35,35 @@ namespace AllYourBase
 
                     int targetBase = digitsMapping.Keys.Count;
 
-                    digitsMapping[digits[0]] = 1;
+                    //digitsMapping[digits[0]] = 1;
                     int digitsCount = digits.Length;
+                    short[] mappedDigits = new short[targetBase];
 
-                    for (int i = 1; i < digitsCount; i++)
-                    { 
-
+                    for (short i = 0; i < targetBase; i++)
+                    {
+                        if (i == 0)
+                        {
+                            mappedDigits[i] = 1;
+                            continue;
+                        }
+                        if (i == 1)
+                        {
+                            mappedDigits[i] = 0;
+                            continue;
+                        }
+                        mappedDigits[i] = i;
                     }
+
+                    int j = 0;
+                    for (int i = 0; i < digitsCount; i++)
+                    { 
+                        if (digitsMapping[digits[i]] == -1)
+                        {
+                            digitsMapping[digits[i]] = mappedDigits[j++];
+                        }
+                    }
+
+                    // calculate the seconds
                 }
             }
 
