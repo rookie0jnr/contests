@@ -13,33 +13,51 @@ namespace StoreCredit
         {
             List<string> results = new List<string>();
 
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-small-practice.in"))
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
-                    string[] inputString = inputFile.ReadLine().Split(' ');
+                    int credit = Convert.ToInt32(inputFile.ReadLine());
 
-                    int wordsCount = inputString.Length;
-                    string result = string.Empty;
+                    int numberOfItems = Convert.ToInt32(inputFile.ReadLine());
 
-                    for (int i = wordsCount - 1; i > 0; i--)
+                    string[] itemPricesAsStrings = inputFile.ReadLine().Split(' ');
+
+                    int[] itemPrices = new int[numberOfItems];
+
+                    for (int i = 0; i < numberOfItems; i++)
                     {
-                        result += inputString[i] + ' ';
+                        itemPrices[i] = Convert.ToInt32(itemPricesAsStrings[i]);
                     }
-                    result += inputString[0];
 
-                    results.Add(result);
+                    bool arePricesFound = false;
+                    for (int i = 0; i < numberOfItems - 1; i++)
+                    {
+                        for (int j = i + 1; j < numberOfItems; j++)
+                        {
+                            if (credit == itemPrices[i] + itemPrices[j])
+                            {
+                                results.Add((i + 1) + " " + (j + 1));
+                                arePricesFound = true;
+                                break;
+                            }
+                        }
+
+                        if (arePricesFound)
+                        {
+                            break;
+                        }
+                    }
                 }
-
             }
 
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-small-practice.out"))
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
             {
 
                 int i = 1;
