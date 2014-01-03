@@ -13,9 +13,9 @@ namespace ReverseWords
         {
             List<int> results = new List<int>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-small-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
@@ -28,9 +28,9 @@ namespace ReverseWords
 
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-small-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
             {
 
                 int i = 1;
