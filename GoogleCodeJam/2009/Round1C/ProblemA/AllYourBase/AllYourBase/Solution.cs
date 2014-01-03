@@ -21,36 +21,26 @@ namespace AllYourBase
 
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
-                    int credit = Convert.ToInt32(inputFile.ReadLine());
+                    Dictionary<char, short> digitsMapping = new Dictionary<char, short>();
 
-                    int numberOfItems = Convert.ToInt32(inputFile.ReadLine());
+                    char[] digits = inputFile.ReadLine().ToCharArray();
 
-                    string[] itemPricesAsStrings = inputFile.ReadLine().Split(' ');
-
-                    int[] itemPrices = new int[numberOfItems];
-
-                    for (int i = 0; i < numberOfItems; i++)
+                    foreach (char digit in digits)
                     {
-                        itemPrices[i] = Convert.ToInt32(itemPricesAsStrings[i]);
+                        if (!digitsMapping.ContainsKey(digit))
+                        {
+                            digitsMapping.Add(digit, -1);
+                        }
                     }
 
-                    bool arePricesFound = false;
-                    for (int i = 0; i < numberOfItems - 1; i++)
-                    {
-                        for (int j = i + 1; j < numberOfItems; j++)
-                        {
-                            if (credit == itemPrices[i] + itemPrices[j])
-                            {
-                                results.Add((i + 1) + " " + (j + 1));
-                                arePricesFound = true;
-                                break;
-                            }
-                        }
+                    int targetBase = digitsMapping.Keys.Count;
 
-                        if (arePricesFound)
-                        {
-                            break;
-                        }
+                    digitsMapping[digits[0]] = 1;
+                    int digitsCount = digits.Length;
+
+                    for (int i = 1; i < digitsCount; i++)
+                    { 
+
                     }
                 }
             }
