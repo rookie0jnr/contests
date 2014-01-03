@@ -11,30 +11,39 @@ namespace ReverseWords
     {
         static void Main(string[] args)
         {
-            List<int> results = new List<int>();
+            List<string> results = new List<string>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
-                    string[] numberOfDirectories = inputFile.ReadLine().Split(' ');
-                    int numberOfExistingDirectories = Convert.ToInt32(numberOfDirectories[0]);
-                    int numberOfDirectoriesToCreate = Convert.ToInt32(numberOfDirectories[1]);
+                    string[] inputString = inputFile.ReadLine().Split(' ');
+
+                    int wordsCount = inputString.Length;
+                    string result = string.Empty;
+
+                    for (int i = wordsCount - 1; i > 0; i--)
+                    {
+                        result += inputString[i] + ' ';
+                    }
+                    result += inputString[0];
+
+                    results.Add(result);
                 }
 
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-small-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
             {
 
                 int i = 1;
-                foreach (int result in results)
+                foreach (string result in results)
                 {
                     outputFile.WriteLine("Case #{0}: {1}", i++, result);
                 }
