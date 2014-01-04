@@ -11,7 +11,7 @@ namespace AllYourBase
     {
         static void Main(string[] args)
         {
-            List<string> results = new List<string>();
+            List<ulong> results = new List<ulong>();
 
             using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
@@ -64,6 +64,15 @@ namespace AllYourBase
                     }
 
                     // calculate the seconds
+                    ulong result = 0;
+                    int k = 0;
+                    for (int i = digitsCount - 1; i >= 0; i--)
+                    {
+                        result += power(targetBase, k++) * (ulong)digitsMapping[digits[i]]; 
+                    }
+
+                    results.Add(result);
+
                 }
             }
 
@@ -73,11 +82,33 @@ namespace AllYourBase
             {
 
                 int i = 1;
-                foreach (string result in results)
+                foreach (ulong result in results)
                 {
                     outputFile.WriteLine("Case #{0}: {1}", i++, result);
                 }
             }
+        }
+
+        private static ulong power(int number, int power)
+        {
+            ulong result = 1;
+
+            if (power == 0)
+            {
+                return 1;
+            }
+
+            if (number == 0)
+            {
+                return 0;
+            }
+           
+            for (int i = 0; i < power; i++)
+            {
+                result *= (ulong)number;
+            }
+
+            return result;
         }
     }
 }
