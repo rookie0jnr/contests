@@ -13,9 +13,10 @@ namespace Rotate
         {
             List<ulong> results = new List<ulong>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practiceROTATED.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
@@ -80,9 +81,10 @@ namespace Rotate
                 }
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practiceROTATED.out"))
             {
 
                 int i = 1;
