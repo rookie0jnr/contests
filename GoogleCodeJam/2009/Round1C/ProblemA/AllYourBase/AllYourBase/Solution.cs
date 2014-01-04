@@ -13,9 +13,9 @@ namespace AllYourBase
         {
             List<ulong> results = new List<ulong>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
@@ -34,6 +34,10 @@ namespace AllYourBase
                     }
 
                     int targetBase = digitsMapping.Keys.Count;
+                    if (1 == targetBase)
+                    {
+                        targetBase = 2;
+                    }
 
                     //digitsMapping[digits[0]] = 1;
                     int digitsCount = digits.Length;
@@ -76,9 +80,9 @@ namespace AllYourBase
                 }
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
             {
 
                 int i = 1;
