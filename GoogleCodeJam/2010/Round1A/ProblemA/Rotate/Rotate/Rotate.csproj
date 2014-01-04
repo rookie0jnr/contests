@@ -46,9 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="inputs\A-example-practice.in" />
+    <None Include="inputs\A-example-practiceROTATED.in" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="inputs\" />
     <Folder Include="outputs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
