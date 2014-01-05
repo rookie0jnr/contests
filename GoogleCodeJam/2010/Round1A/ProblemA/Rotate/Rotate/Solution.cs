@@ -124,16 +124,57 @@ namespace Rotate
 
         static bool checkDirectionRIGHT(int x, int y, char element)
         {
+            if ((x + k < n) && (element.Equals(rotatedArray[x + k - 1, y])))
+            {
+                for (int i = x; i < (x+k - 2); i++)
+                {
+                    if (!element.Equals(rotatedArray[i, y]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
             return false;
         }
 
         static bool checkDirectionUP_RIGHT(int x, int y, char element)
         {
+            if ((x + k < n) && (y + k < n) && (element.Equals(rotatedArray[x + k - 1, y + k - 1])))
+            {
+                for (int i = x; i < (x + k - 2); i++)
+                {
+                    for (int j = y; j < (y + k - 2); j++)
+                    {
+                        if (!element.Equals(rotatedArray[i, j]))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+
             return false;
         }
 
         static bool checkDirectionUP(int x, int y, char element)
         {
+            if ((y - k >= 0) && (element.Equals(rotatedArray[x, y - k + 1])))
+            {
+                for (int i = y; i > (y - k + 2); i--)
+                {
+                    if (!element.Equals(rotatedArray[x, i]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
             return false;
         }
 
