@@ -9,9 +9,13 @@ namespace Rotate
 {
     class Solution
     {
+        static char[,] rotatedArray;
+        static int k = 0;
+        static int n = 0;
+
         static void Main(string[] args)
         {
-            List<ulong> results = new List<ulong>();
+            List<string> results = new List<string>();
 
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
@@ -20,64 +24,87 @@ namespace Rotate
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
-                for (int l = 0; l < numberOfTestCases; l++)
+                for (int t = 0; t < numberOfTestCases; t++)
                 {
-                    Dictionary<char, short> digitsMapping = new Dictionary<char, short>();
+                    string[] nAndK = inputFile.ReadLine().Split(' ');
+                    n = Convert.ToInt32(nAndK[0]);
+                    k = Convert.ToInt32(nAndK[1]);
 
-                    char[] digits = inputFile.ReadLine().ToCharArray();
+                    rotatedArray = new char[n, n];
 
-                    foreach (char digit in digits)
+                    // once rotated input is solved
+                    // change this!
+                    for (int i = 0; i < n; i++)
                     {
-                        if (!digitsMapping.ContainsKey(digit))
+                        string matrixRow = inputFile.ReadLine();
+                        for (int j = 0; j < n; j++)
                         {
-                            digitsMapping.Add(digit, -1);
+                            rotatedArray[i,j] = matrixRow[j];
                         }
                     }
 
-                    int targetBase = digitsMapping.Keys.Count;
-                    if (1 == targetBase)
+                    bool RisAWinner = false;
+                    bool BisAWinner = false;
+                    for (int i = n - 1; i >= 0; i--)
                     {
-                        targetBase = 2;
-                    }
-
-                    //digitsMapping[digits[0]] = 1;
-                    int digitsCount = digits.Length;
-                    short[] mappedDigits = new short[targetBase];
-
-                    for (short i = 0; i < targetBase; i++)
-                    {
-                        if (i == 0)
+                        for (int j = 0; j < n; j++)
                         {
-                            mappedDigits[i] = 1;
-                            continue;
+                            if ('.'.Equals(rotatedArray[i, j]))
+                            {
+                                continue;
+                            }
+
+                            if (RisAWinner && BisAWinner)
+                            {
+                                // both players are winners, so there is no point to continue.
+                                break;
+                            }
+
+                            char currentElement = rotatedArray[i, j];
+
+                            if ('R'.Equals(currentElement) && RisAWinner)
+                            {
+                                continue;
+                            }
+
+                            if ('B'.Equals(currentElement) && BisAWinner)
+                            {
+                                continue;
+                            }
+
+                            if (checkDirectionRIGHT(i, j, currentElement) ||
+                                checkDirectionUP_RIGHT(i, j, currentElement) ||
+                                checkDirectionUP(i, j, currentElement) ||
+                                checkDirectionUP_LEFT(i, j, currentElement))
+                            {
+                                if ('R'.Equals(currentElement))
+                                {
+                                    RisAWinner = true;
+                                }
+                                if ('B'.Equals(currentElement))
+                                {
+                                    BisAWinner = true;
+                                }
+                            }
                         }
-                        if (i == 1)
-                        {
-                            mappedDigits[i] = 0;
-                            continue;
-                        }
-                        mappedDigits[i] = i;
                     }
 
-                    int j = 0;
-                    for (int i = 0; i < digitsCount; i++)
+                    if (!(RisAWinner || BisAWinner))
                     {
-                        if (digitsMapping[digits[i]] == -1)
-                        {
-                            digitsMapping[digits[i]] = mappedDigits[j++];
-                        }
+                        results.Add("Neither");
                     }
-
-                    // calculate the seconds
-                    ulong result = 0;
-                    int k = 0;
-                    for (int i = digitsCount - 1; i >= 0; i--)
+                    else if (RisAWinner && BisAWinner)
                     {
-                        result += power(targetBase, k++) * (ulong)digitsMapping[digits[i]];
+                        results.Add("Both");
                     }
-
-                    results.Add(result);
-
+                    else if (RisAWinner)
+                    {
+                        results.Add("Red");
+                    }
+                    else
+                    {
+                        results.Add("Blue");
+                    }
                 }
             }
 
@@ -88,33 +115,31 @@ namespace Rotate
             {
 
                 int i = 1;
-                foreach (ulong result in results)
+                foreach (string result in results)
                 {
                     outputFile.WriteLine("Case #{0}: {1}", i++, result);
                 }
             }
         }
 
-        private static ulong power(int number, int power)
+        static bool checkDirectionRIGHT(int x, int y, char element)
         {
-            ulong result = 1;
+            return false;
+        }
 
-            if (power == 0)
-            {
-                return 1;
-            }
+        static bool checkDirectionUP_RIGHT(int x, int y, char element)
+        {
+            return false;
+        }
 
-            if (number == 0)
-            {
-                return 0;
-            }
+        static bool checkDirectionUP(int x, int y, char element)
+        {
+            return false;
+        }
 
-            for (int i = 0; i < power; i++)
-            {
-                result *= (ulong)number;
-            }
-
-            return result;
+        static bool checkDirectionUP_LEFT(int x, int y, char element)
+        {
+            return false;
         }
     }
 }
