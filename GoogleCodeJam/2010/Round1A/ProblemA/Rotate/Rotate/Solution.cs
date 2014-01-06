@@ -77,7 +77,7 @@ namespace Rotate
 
                             if (checkDirectionRIGHT(j, i, currentElement, rightLIMIT) ||
                                 checkDirectionUP(j, i, currentElement, upLIMIT) ||
-                                checkDirectionUP_RIGHT(j, i, currentElement, rightLIMIT, upLIMIT) ||
+                                checkDirectionUP_RIGHT(j, i, currentElement, upLIMIT, rightLIMIT) ||
                                 checkDirectionUP_LEFT(j, i, currentElement, upLIMIT))
                             {
                                 if ('R'.Equals(currentElement))
@@ -131,7 +131,7 @@ namespace Rotate
             {
                 for (int i = x + 1; i < rightLIMIT; i++)
                 {
-                    if (!element.Equals(rotatedArray[i, y]))
+                    if (!element.Equals(rotatedArray[y, i]))
                     {
                         return false;
                     }
@@ -145,7 +145,7 @@ namespace Rotate
 
         static bool checkDirectionUP_RIGHT(int x, int y, char element, int upLIMIT, int rightLIMIT)
         {
-            if ((rightLIMIT < n) && (upLIMIT >= 0) && (element.Equals(rotatedArray[upLIMIT, rightLIMIT])))
+            if ( rightLIMIT < n && upLIMIT >= 0 && element.Equals(rotatedArray[upLIMIT, rightLIMIT]) )
             {
                 for (int i = y - 1; i >= upLIMIT; i--)
                 {
@@ -170,7 +170,7 @@ namespace Rotate
             {
                 for (int i = y - 1; i > upLIMIT; i--)
                 {
-                    if (!element.Equals(rotatedArray[x, i]))
+                    if (!element.Equals(rotatedArray[i, x]))
                     {
                         return false;
                     }
