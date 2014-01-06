@@ -72,10 +72,13 @@ namespace Rotate
                                 continue;
                             }
 
-                            if (checkDirectionRIGHT(i, j, currentElement) ||
-                                checkDirectionUP_RIGHT(i, j, currentElement) ||
-                                checkDirectionUP(i, j, currentElement) ||
-                                checkDirectionUP_LEFT(i, j, currentElement))
+                            int rightLIMIT = j + k - 1;
+                            int upLIMIT = i - k + 1;
+
+                            if (checkDirectionRIGHT(j, i, currentElement, rightLIMIT) ||
+                                checkDirectionUP(j, i, currentElement, upLIMIT) ||
+                                checkDirectionUP_RIGHT(j, i, currentElement, rightLIMIT, upLIMIT) ||
+                                checkDirectionUP_LEFT(j, i, currentElement, upLIMIT))
                             {
                                 if ('R'.Equals(currentElement))
                                 {
@@ -122,11 +125,11 @@ namespace Rotate
             }
         }
 
-        static bool checkDirectionRIGHT(int x, int y, char element)
+        static bool checkDirectionRIGHT(int x, int y, char element, int rightLIMIT)
         {
-            if ((x + k < n) && (element.Equals(rotatedArray[x + k - 1, y])))
+            if ((rightLIMIT < n) && (element.Equals(rotatedArray[y, rightLIMIT])))
             {
-                for (int i = x; i < (x+k - 2); i++)
+                for (int i = x + 1; i < rightLIMIT; i++)
                 {
                     if (!element.Equals(rotatedArray[i, y]))
                     {
@@ -140,13 +143,13 @@ namespace Rotate
             return false;
         }
 
-        static bool checkDirectionUP_RIGHT(int x, int y, char element)
+        static bool checkDirectionUP_RIGHT(int x, int y, char element, int upLIMIT, int rightLIMIT)
         {
-            if ((x + k < n) && (y + k < n) && (element.Equals(rotatedArray[x + k - 1, y + k - 1])))
+            if ((rightLIMIT < n) && (upLIMIT >= 0) && (element.Equals(rotatedArray[upLIMIT, rightLIMIT])))
             {
-                for (int i = x; i < (x + k - 2); i++)
+                for (int i = y - 1; i >= upLIMIT; i--)
                 {
-                    for (int j = y; j < (y + k - 2); j++)
+                    for (int j = x + 1; j < rightLIMIT; j++)
                     {
                         if (!element.Equals(rotatedArray[i, j]))
                         {
@@ -161,11 +164,11 @@ namespace Rotate
             return false;
         }
 
-        static bool checkDirectionUP(int x, int y, char element)
+        static bool checkDirectionUP(int x, int y, char element, int upLIMIT)
         {
-            if ((y - k >= 0) && (element.Equals(rotatedArray[x, y - k + 1])))
+            if ((upLIMIT >= 0) && (element.Equals(rotatedArray[upLIMIT, x])))
             {
-                for (int i = y; i > (y - k + 2); i--)
+                for (int i = y - 1; i > upLIMIT; i--)
                 {
                     if (!element.Equals(rotatedArray[x, i]))
                     {
@@ -178,8 +181,26 @@ namespace Rotate
             return false;
         }
 
-        static bool checkDirectionUP_LEFT(int x, int y, char element)
+        static bool checkDirectionUP_LEFT(int x, int y, char element, int upLIMIT)
         {
+            int leftLIMIT = x - k + 1;
+
+            if ((leftLIMIT >= 0) && (upLIMIT >= 0) && (element.Equals(rotatedArray[upLIMIT, leftLIMIT])))
+            {
+                for (int i = y - 1; i >= upLIMIT; i--)
+                {
+                    for (int j = x - 1; j > leftLIMIT; j--)
+                    {
+                        if (!element.Equals(rotatedArray[i, j]))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+
             return false;
         }
     }
