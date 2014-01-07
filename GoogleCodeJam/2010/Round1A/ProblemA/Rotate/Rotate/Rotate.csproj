@@ -48,6 +48,8 @@
     <None Include="App.config" />
     <None Include="inputs\A-example-practice.in" />
     <None Include="inputs\A-example-practiceROTATED.in" />
+    <None Include="inputs\A-large-practice.in" />
+    <None Include="inputs\A-small-practice.in" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="outputs\" />
