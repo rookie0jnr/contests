@@ -17,10 +17,10 @@ namespace Rotate
         {
             List<string> results = new List<string>();
 
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-small-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-large-practice.in"))
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practiceROTATED.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\A-example-practiceROTATED.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
 
@@ -30,18 +30,17 @@ namespace Rotate
                     n = Convert.ToInt32(nAndK[0]);
                     k = Convert.ToInt32(nAndK[1]);
 
-                    rotatedArray = new char[n, n];
-
-                    // once rotated input is solved
-                    // change this!
+                    char[,] originalArray = new char[n, n];
                     for (int i = 0; i < n; i++)
                     {
                         string matrixRow = inputFile.ReadLine();
                         for (int j = 0; j < n; j++)
                         {
-                            rotatedArray[i,j] = matrixRow[j];
+                            originalArray[i, j] = matrixRow[j];
                         }
                     }
+
+                    rotate(originalArray);
 
                     bool RisAWinner = false;
                     bool BisAWinner = false;
@@ -111,10 +110,10 @@ namespace Rotate
                 }
             }
 
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-small-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-large-practice.out"))
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practiceROTATED.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practiceROTATED.out"))
             {
 
                 int i = 1;
@@ -123,6 +122,34 @@ namespace Rotate
                     outputFile.WriteLine("Case #{0}: {1}", i++, result);
                 }
             }
+        }
+
+        static void rotate(char[,] originalArray)
+        {
+            rotatedArray = new char[n, n];
+
+            int rRow = n - 1;
+            int rCol = 0;
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                for (int j = n - 1; j >= 0; j--)
+                {
+                    if (!'.'.Equals(originalArray[i, j]))
+                    {
+                        rotatedArray[rRow--, rCol] = originalArray[i, j];
+                    }
+                }
+
+                for (int emptyCells = rRow; emptyCells >= 0; emptyCells--)
+                {
+                    rotatedArray[emptyCells, rCol] = '.';
+                }
+
+                rCol++;
+                rRow = n - 1;
+            }
+
         }
 
         static bool checkDirectionRIGHT(int x, int y, char element, int rightLIMIT)
