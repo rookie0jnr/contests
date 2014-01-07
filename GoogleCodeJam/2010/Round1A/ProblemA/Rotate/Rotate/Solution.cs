@@ -147,14 +147,11 @@ namespace Rotate
         {
             if ( rightLIMIT < n && upLIMIT >= 0 && element.Equals(rotatedArray[upLIMIT, rightLIMIT]) )
             {
-                for (int i = y - 1; i >= upLIMIT; i--)
+                for (int i = y - 1, j = x + 1; i >= upLIMIT; i--, j++)
                 {
-                    for (int j = x + 1; j < rightLIMIT; j++)
+                    if (!element.Equals(rotatedArray[i, j]))
                     {
-                        if (!element.Equals(rotatedArray[i, j]))
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
 
@@ -187,14 +184,11 @@ namespace Rotate
 
             if ((leftLIMIT >= 0) && (upLIMIT >= 0) && (element.Equals(rotatedArray[upLIMIT, leftLIMIT])))
             {
-                for (int i = y - 1; i >= upLIMIT; i--)
+                for (int i = y - 1, j = x - 1; i >= upLIMIT; i--, j--)
                 {
-                    for (int j = x - 1; j > leftLIMIT; j--)
+                    if (!element.Equals(rotatedArray[i, j]))
                     {
-                        if (!element.Equals(rotatedArray[i, j]))
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
 
