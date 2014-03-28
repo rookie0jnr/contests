@@ -15,15 +15,15 @@ namespace Treasure
         {
             List<string> results = new List<string>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-example-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-small-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-example-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-small-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
                 for (int i = 0; i < numberOfTestCases; i++)
                 {
                     foundPath.Clear();
-
+                    Console.WriteLine("TestCase nr: " + i + " started!");
                     uint chestsToOpenCount = Convert.ToUInt32(inputFile.ReadLine().Split(' ')[1]);
                     List<Chest> chestsToOpen = new List<Chest>();
 
@@ -62,11 +62,13 @@ namespace Treasure
 
                         //results.Add(resultPath);
                     }
+
+                    Console.WriteLine("TestCase nr: " + i + " ENDED!");
                 }
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-example-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-small-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-example-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-small-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-large-practice.out"))
             {
                 int i = 1;
@@ -90,17 +92,21 @@ namespace Treasure
                 uint keyForChest = remainingChestsToOpen[i].requiredKey;
                 if (currentlyAvailableKeys.Contains<uint>(keyForChest))
                 {
-                    currentlyAvailableKeys.Remove(keyForChest);
+                    //currentlyAvailableKeys.Remove(keyForChest);
+                    List<uint> newAvailableKeys = new List<uint>(currentlyAvailableKeys);
+                    newAvailableKeys.Remove(keyForChest);
                     foreach (uint key in remainingChestsToOpen[i].availableKeys)
                     {
-                        currentlyAvailableKeys.Add(key);
+                        newAvailableKeys.Add(key);
                     }
                     foundPath.Add(remainingChestsToOpen[i].chestNumber.ToString());
-                    remainingChestsToOpen.RemoveAt(i);
-                    i--;
+                    List<Chest> newRemainingChestsToOpen = new List<Chest>(remainingChestsToOpen);
+                    newRemainingChestsToOpen.RemoveAt(i);
+                    //remainingChestsToOpen.RemoveAt(i);
+                    //i--;
 
 
-                    if (!tryOpenAChest(currentlyAvailableKeys, remainingChestsToOpen))
+                    if (!tryOpenAChest(newAvailableKeys, newRemainingChestsToOpen))
                     {
                         foundPath.RemoveAt(foundPath.Count - 1);
                     }
