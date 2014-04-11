@@ -15,8 +15,8 @@ namespace Treasure
         {
             List<string> results = new List<string>();
 
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-example-practice.in"))
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-small-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-small-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\D-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
@@ -67,8 +67,8 @@ namespace Treasure
                 }
             }
 
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-example-practice.out"))
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-small-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-small-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\D-large-practice.out"))
             {
                 int i = 1;
@@ -81,6 +81,17 @@ namespace Treasure
 
         private static bool tryOpenAChest(List<uint> currentlyAvailableKeys, List<Chest> remainingChestsToOpen)
         {
+            Console.WriteLine("Log start:");
+            foreach (uint item in currentlyAvailableKeys)
+            {
+                Console.WriteLine("key " + item);
+            }
+            foreach (Chest item in remainingChestsToOpen)
+            {
+                Console.WriteLine("chest nr: " + item.chestNumber);
+            }
+            Console.WriteLine("Log END!!!");
+            Console.WriteLine("");
             if (0.Equals(remainingChestsToOpen.Count))
             {
                 return true;
