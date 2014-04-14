@@ -46,7 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="inputs\A-example-practice.in" />
+    <None Include="inputs\B-example-practice.in" />
+    <None Include="inputs\A-small-attempt0.in" />
+    <None Include="inputs\B-large.in" />
+    <None Include="inputs\B-small-attempt0.in" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="outputs\" />
