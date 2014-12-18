@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace Cube_IV
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
                 inputFile.ReadLine();
+
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
 
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
@@ -56,6 +60,11 @@ namespace Cube_IV
                     {
                         for (int j = 1; j < upperBound; j++)
                         {
+                            if (-1 == rooms[i, j])
+                            {
+                                continue;
+                            }
+
                             int startX = i;
                             int startY = j;
                             while (canGoBack(ref startX, ref startY, rooms[startX, startY]))
@@ -66,10 +75,18 @@ namespace Cube_IV
                             // at this point - startX and startY contains the coordinates of the first cell
                             int firstCellNumber = rooms[startX, startY];
                             int counter = 1;
+
+                            int previousX = startX;
+                            int previousY = startY;
+
                             while (canGoForward(ref startX, ref startY, rooms[startX, startY]))
                             {
                                 counter++;
+                                rooms[previousX, previousY] = -1;
+                                previousX = startX;
+                                previousY = startY;
                             }
+                            rooms[startX, startY] = -1;
 
                             if (maximumPathLength < counter)
                             {
@@ -80,13 +97,18 @@ namespace Cube_IV
                             {
                                 minimalStartCellNumber = firstCellNumber;
                             }
-
                         }
                     }
 
                     results.Add(minimalStartCellNumber + " " + maximumPathLength);
                 }
 
+                Console.WriteLine("Solving took: " + watch.ElapsedMilliseconds + " milliseconds.");
+                // Initial implementation takes about 860 milliseconds.
+                // Marking all already checked cells reduces the time to ONLY about 17 milliseconds.
+                // Adding a final check in the beggining if a cell is "marked", further reduces the execution time to about 14 milliseconds.
+                // This is about 60 times faster than the original implementation!
+                watch.Stop();
             }
 
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\A-example-practice.out"))
