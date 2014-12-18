@@ -1,0 +1,6 @@
+This folder contains the solutions for the GoogleCodeJam (Google APAC 2015 University Graduates Test, Round D) problems.
+The problem sets (along with the inputs) are located here:
+Problem A: https://code.google.com/codejam/contest/6214486/dashboard#s=p0
+Problem B: https://code.google.com/codejam/contest/6214486/dashboard#s=p1
+Problem C: https://code.google.com/codejam/contest/6214486/dashboard#s=p2
+Problem D: https://code.google.com/codejam/contest/6214486/dashboard#s=p3
