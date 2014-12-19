@@ -22,28 +22,25 @@ namespace SortAScrambledItinerary
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
                     int numberOfTickets = Convert.ToInt32(inputFile.ReadLine());
-                    
-                    Dictionary<string, string> flightTickets = new Dictionary<string, string>();
+
+                    List<string> sources = new List<string>();
+                    List<string> destinations = new List<string>();
+
                     for (int i = 0; i < (numberOfTickets * 2); i = i + 2)
                     {
-                        string source = inputFile.ReadLine();
-                        string destination = inputFile.ReadLine();
-
-                        flightTickets.Add(source, destination);
+                        sources.Add(inputFile.ReadLine());
+                        destinations.Add(inputFile.ReadLine());
                     }
 
                     string ticketSource = string.Empty;
-                    foreach (var source in flightTickets.Keys)
+                    foreach (var source in sources)
                     {
-                        if (!flightTickets.Values.Contains(source))
+                        if (!destinations.Contains(source))
                         {
                             ticketSource = source;
                             break;
                         }
                     }
-
-                    List<string> sources = flightTickets.Keys.ToList<string>();
-                    List<string> destinations = flightTickets.Values.ToList<string>();
 
                     string testCaseResult = string.Empty;
                     for (int i = 0; i < sources.Count; i++)
@@ -61,7 +58,6 @@ namespace SortAScrambledItinerary
 
                     testCaseResult = testCaseResult.Remove(testCaseResult.Length - 1);
                     results.Add(testCaseResult);
-                    //inputFile.ReadLine();
                 }
             }
 
