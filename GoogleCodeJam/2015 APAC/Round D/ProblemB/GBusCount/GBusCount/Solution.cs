@@ -14,24 +14,68 @@ namespace GBusCount
         {
             List<string> results = new List<string>();
 
-            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
+            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-example-practice.in"))
             //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-small-practice.in"))
-            //using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
+            using (StreamReader inputFile = new StreamReader(@"..\..\inputs\B-large-practice.in"))
             {
                 int numberOfTestCases = Convert.ToInt32(inputFile.ReadLine());
-                inputFile.ReadLine();
-
+                
                 for (int l = 0; l < numberOfTestCases; l++)
                 {
+                    int N = Convert.ToInt32(inputFile.ReadLine());
 
+                    string[] gBuses = inputFile.ReadLine().Split(' ');
+
+                    List<Tuple<int, int>> gBusesList = new List<Tuple<int,int>>();
+                    for (int i = 0; i < (2 * N); i = i+2)
+                    {
+                        gBusesList.Add(new Tuple<int, int>(Convert.ToInt32(gBuses[i]), Convert.ToInt32(gBuses[i+1])));
+                    }
+                    gBusesList.Sort((a, b) => a.Item1.CompareTo(b.Item1));
+
+                    int P = Convert.ToInt32(inputFile.ReadLine());
+                    int[] sities = new int[P];
+
+                    for (int i = 0; i < P; i++)
+                    {
+                        sities[i] = Convert.ToInt32(inputFile.ReadLine());
+                    }
+
+                    int[] resultArray = new int[P]; 
+                    for (int i = 0; i < P; i++)
+                    {
+                        int gBusesCoverCityCount = 0; 
+                        foreach (Tuple<int, int> bus in gBusesList)
+                        {
+                            if (bus.Item1 > sities[i])
+                            {
+                                break;
+                            }
+                            else if ((bus.Item1 <= sities[i]) && (bus.Item2 >= sities[i]))
+                            {
+                                gBusesCoverCityCount++;
+                            }
+                        }
+
+                        resultArray[i] = gBusesCoverCityCount;
+                    }
+
+                    string testCaseResult = string.Empty;
+                    int res = 0;
+                    for (; res < P - 1; res++)
+                    {
+                        testCaseResult += resultArray[res] + " ";
+                    }
+                    testCaseResult += resultArray[res];
+                    results.Add(testCaseResult);
+
+                    inputFile.ReadLine();
                 }
-                //results.Add();
-
             }
 
-            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
+            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-example-practice.out"))
             //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-small-practice.out"))
-            //using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
+            using (StreamWriter outputFile = new StreamWriter(@"..\..\outputs\B-large-practice.out"))
             {
 
                 int i = 1;
