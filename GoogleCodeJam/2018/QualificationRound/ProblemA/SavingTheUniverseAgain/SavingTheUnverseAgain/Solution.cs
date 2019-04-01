@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace SavingTheUnverseAgain
 {
@@ -22,6 +23,37 @@ namespace SavingTheUnverseAgain
                     int maximumDamage = Convert.ToInt32(input[0]);
                     string instructions = input[1];
 
+                    int countOfShoots = 0;
+                    foreach (char shootingChar in instructions)
+                    {
+                        if (shootingChar == 'S')
+                        {
+                            countOfShoots++;
+                        }
+                    }
+                    if (countOfShoots > maximumDamage)
+                    {
+                        results.Add("IMPOSSIBLE");
+                        continue;
+                    }
+
+                    int totalNumberOfHacks = 0;
+                    while (currentDamage(instructions) > maximumDamage )
+                    {
+                        StringBuilder currentInstructions = new StringBuilder(instructions);
+                        for (int i = instructions.Length - 1; i > 0; i--)
+                        {
+                            if (instructions[i] == 'S' && instructions[i - 1] == 'C')
+                            {
+                                currentInstructions[i] = 'C';
+                                currentInstructions[i - 1] = 'S';
+                                totalNumberOfHacks++;
+                                instructions = currentInstructions.ToString();
+                                break;
+                            }
+                        }
+                    }
+                    results.Add(totalNumberOfHacks.ToString());
 
                 }
             }
@@ -37,7 +69,30 @@ namespace SavingTheUnverseAgain
                     outputFile.WriteLine("Case #{0}: {1}", i++, result);
                 }
             }
-
         }
+
+        static int currentDamage(string instructions)
+        {
+            int currentPower = 1;
+            int totalDamage = 0;
+
+            foreach (char command in instructions)
+            {
+                if (command == 'S')
+                {
+                    totalDamage += currentPower;
+                }
+                else if (command == 'C')
+                {
+                    currentPower *= 2;
+                }
+                else
+                {
+                    throw new InvalidDataException("Encountered char " + command);
+                }
+            }
+            return totalDamage;
+        }
+
     }
 }
