@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28721.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavingTheUnverseAgain", "SavingTheUnverseAgain\SavingTheUnverseAgain.csproj", "{7F1E5515-C0C8-4CBB-9585-7131D4D54655}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F1E5515-C0C8-4CBB-9585-7131D4D54655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1E5515-C0C8-4CBB-9585-7131D4D54655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1E5515-C0C8-4CBB-9585-7131D4D54655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1E5515-C0C8-4CBB-9585-7131D4D54655}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE452E04-F58A-476A-A89D-91A896D4932E}
+	EndGlobalSection
+EndGlobal
