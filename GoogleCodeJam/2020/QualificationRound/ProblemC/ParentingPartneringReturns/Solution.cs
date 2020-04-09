@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParentingPartneringReturns
 {
@@ -34,10 +35,13 @@ namespace ParentingPartneringReturns
 
                 var currentActivitiesList = inputs[i];
                 int activitiesCount = currentActivitiesList.Count;
+                var sorted = currentActivitiesList
+                    .OrderBy(st => Convert.ToInt32(st.Split(' ')[0]))
+                    .ToList();
 
                 for (int j = 0; j < activitiesCount; j++)
                 {
-                    var activity = currentActivitiesList[j].Split(' ');
+                    var activity = sorted[j].Split(' ');
                     int activityStart = Convert.ToInt32(activity[0]);
                     int activityEnd = Convert.ToInt32(activity[1]);
 
