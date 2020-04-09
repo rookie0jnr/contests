@@ -13,16 +13,19 @@ namespace ParentingPartneringReturns
         {
             int testCases = Convert.ToInt32(Console.ReadLine());
             List<string> results = new List<string>();
-            Dictionary<int, List<string>> inputs = new Dictionary<int, List<string>>();
+            Dictionary<int, List<List<int>>> inputs = new Dictionary<int, List<List<int>>>();
 
             for (int i = 0; i < testCases; i++)
             {
                 int activitiesCount = Convert.ToInt32(Console.ReadLine());
-                List<string> current = new List<string>();
-
+                List<List<int>> current = new List<List<int>>();
+                
                 for (int j = 0; j < activitiesCount; j++)
                 {
-                    current.Add(Console.ReadLine());
+                    string[] times = Console.ReadLine().Split(' ');
+                    List<int> currentActivity = times.Select(n => Convert.ToInt32(n)).ToList();
+                    currentActivity.Add(j);
+                    current.Add(currentActivity);
                 }
                 inputs.Add(i, current);
             }
@@ -32,18 +35,19 @@ namespace ParentingPartneringReturns
                 string currentTestResult = "Case #" + (i + 1) + ": ";
                 cameronAvailabilty = new int[1440];
                 jamieAvailabilty = new int[1440];
+                
 
                 var currentActivitiesList = inputs[i];
                 int activitiesCount = currentActivitiesList.Count;
+                char[] result = new char[activitiesCount];
                 var sorted = currentActivitiesList
-                    .OrderBy(st => Convert.ToInt32(st.Split(' ')[0]))
+                    .OrderBy(st => st[0])
                     .ToList();
 
                 for (int j = 0; j < activitiesCount; j++)
                 {
-                    var activity = sorted[j].Split(' ');
-                    int activityStart = Convert.ToInt32(activity[0]);
-                    int activityEnd = Convert.ToInt32(activity[1]);
+                    int activityStart = sorted[j][0];
+                    int activityEnd = sorted[j][1];
 
                     if (CameronAvailable(activityStart, activityEnd))
                     {
@@ -52,7 +56,7 @@ namespace ParentingPartneringReturns
                             cameronAvailabilty[k] = 1;
                             continue;
                         }
-                        currentTestResult += "C";
+                        result[sorted[j][2]] = 'C';
                     }
                     else if (JamieAvailable(activityStart, activityEnd))
                     {
@@ -61,7 +65,7 @@ namespace ParentingPartneringReturns
                             jamieAvailabilty[k] = 1;
                             continue;
                         }
-                        currentTestResult += "J";
+                        result[sorted[j][2]] = 'J'; 
                     }
                     else
                     {
@@ -71,7 +75,14 @@ namespace ParentingPartneringReturns
 
                 }
 
-                results.Add(currentTestResult);
+                if (!currentTestResult.Contains("IMPOSSIBLE"))
+                {
+                    results.Add(currentTestResult + new string(result));
+                }
+                else
+                {
+                    results.Add(currentTestResult);
+                }
             }
 
             for (int i = 0; i < testCases; i++)
