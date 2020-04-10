@@ -15,76 +15,72 @@ namespace ParentingPartneringReturns
             List<string> results = new List<string>();
             Dictionary<int, List<List<int>>> inputs = new Dictionary<int, List<List<int>>>();
 
+            // Getting all the input
             for (int i = 0; i < testCases; i++)
             {
                 int activitiesCount = Convert.ToInt32(Console.ReadLine());
-                List<List<int>> current = new List<List<int>>();
+                List<List<int>> activitiesForATestCase = new List<List<int>>();
                 
                 for (int j = 0; j < activitiesCount; j++)
                 {
-                    string[] times = Console.ReadLine().Split(' ');
-                    List<int> currentActivity = times.Select(n => Convert.ToInt32(n)).ToList();
+                    string[] activitiesTimes = Console.ReadLine().Split(' ');
+                    List<int> currentActivity = 
+                        activitiesTimes
+                        .Select(n => Convert.ToInt32(n))
+                        .ToList();
+
                     currentActivity.Add(j);
-                    current.Add(currentActivity);
+                    activitiesForATestCase.Add(currentActivity);
                 }
-                inputs.Add(i, current);
+                inputs.Add(i, activitiesForATestCase);
             }
 
+            // Solve
             for (int i = 0; i < testCases; i++)
             {
                 string currentTestResult = "Case #" + (i + 1) + ": ";
                 cameronAvailabilty = new int[1440];
                 jamieAvailabilty = new int[1440];
                 
-
                 var currentActivitiesList = inputs[i];
                 int activitiesCount = currentActivitiesList.Count;
                 char[] result = new char[activitiesCount];
-                var sorted = currentActivitiesList
+                var activitiesSortedByStartTime = currentActivitiesList
                     .OrderBy(st => st[0])
                     .ToList();
 
                 for (int j = 0; j < activitiesCount; j++)
                 {
-                    int activityStart = sorted[j][0];
-                    int activityEnd = sorted[j][1];
+                    int activityStart = activitiesSortedByStartTime[j][0];
+                    int activityEnd = activitiesSortedByStartTime[j][1];
 
                     if (CameronAvailable(activityStart, activityEnd))
                     {
                         for (int k = activityStart; k < activityEnd; k++)
                         {
                             cameronAvailabilty[k] = 1;
-                            continue;
                         }
-                        result[sorted[j][2]] = 'C';
+                        result[activitiesSortedByStartTime[j][2]] = 'C';
                     }
                     else if (JamieAvailable(activityStart, activityEnd))
                     {
                         for (int k = activityStart; k < activityEnd; k++)
                         {
                             jamieAvailabilty[k] = 1;
-                            continue;
                         }
-                        result[sorted[j][2]] = 'J'; 
+                        result[activitiesSortedByStartTime[j][2]] = 'J'; 
                     }
                     else
                     {
-                        currentTestResult = "Case #" + (i + 1) + ": IMPOSSIBLE";
+                        result = "IMPOSSIBLE".ToCharArray();
                         break;
                     }
-
                 }
 
-                if (!currentTestResult.Contains("IMPOSSIBLE"))
-                {
-                    results.Add(currentTestResult + new string(result));
-                }
-                else
-                {
-                    results.Add(currentTestResult);
-                }
+                results.Add(currentTestResult + new string(result));
             }
 
+            // Writing results
             for (int i = 0; i < testCases; i++)
             {
                 Console.WriteLine(results[i]);
