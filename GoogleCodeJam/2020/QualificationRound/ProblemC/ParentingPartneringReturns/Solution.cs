@@ -6,9 +6,6 @@ namespace ParentingPartneringReturns
 {
     class Solution
     {
-        static int[] cameronAvailabilty;
-        static int[] jamieAvailabilty;
-
         static void Main(string[] args)
         {
             int testCases = Convert.ToInt32(Console.ReadLine());
@@ -39,8 +36,6 @@ namespace ParentingPartneringReturns
             for (int i = 0; i < testCases; i++)
             {
                 string currentTestResult = "Case #" + (i + 1) + ": ";
-                cameronAvailabilty = new int[1440];
-                jamieAvailabilty = new int[1440];
                 
                 var currentActivitiesList = inputs[i];
                 int activitiesCount = currentActivitiesList.Count;
@@ -49,25 +44,23 @@ namespace ParentingPartneringReturns
                     .OrderBy(st => st[0])
                     .ToList();
 
+                int cameronAvailableFrom = 0;
+                int jamieAvailableFrom = 0;
                 for (int j = 0; j < activitiesCount; j++)
                 {
                     int activityStart = activitiesSortedByStartTime[j][0];
                     int activityEnd = activitiesSortedByStartTime[j][1];
 
-                    if (CameronAvailable(activityStart, activityEnd))
+                    // If Cameron is available - assign it to her
+                    // and adjust its "available from" time
+                    if (cameronAvailableFrom <= activityStart)
                     {
-                        for (int k = activityStart; k < activityEnd; k++)
-                        {
-                            cameronAvailabilty[k] = 1;
-                        }
+                        cameronAvailableFrom = activityEnd;
                         result[activitiesSortedByStartTime[j][2]] = 'C';
                     }
-                    else if (JamieAvailable(activityStart, activityEnd))
+                    else if (jamieAvailableFrom <= activityStart)
                     {
-                        for (int k = activityStart; k < activityEnd; k++)
-                        {
-                            jamieAvailabilty[k] = 1;
-                        }
+                        jamieAvailableFrom = activityEnd;
                         result[activitiesSortedByStartTime[j][2]] = 'J'; 
                     }
                     else
@@ -85,32 +78,6 @@ namespace ParentingPartneringReturns
             {
                 Console.WriteLine(results[i]);
             }
-        }
-
-        static bool CameronAvailable(int start, int end)
-        {
-            for (int i = start; i < end; i++)
-            {
-                if (cameronAvailabilty[i] == 1)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        static bool JamieAvailable(int start, int end)
-        {
-            for (int i = start; i < end; i++)
-            {
-                if (jamieAvailabilty[i] == 1)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }
