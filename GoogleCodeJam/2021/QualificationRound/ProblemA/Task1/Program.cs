@@ -7,16 +7,15 @@ namespace Task1
 {
     class Program
     {
-        static StringBuilder list;
-        //static void Main(string[] args)
-        //{
-        //    list = new StringBuilder("1243");
-        //    Reverse(2, 3 - 2 +1);
-        //}
+        static int[] list;
 
         static void Reverse(int start, int length)
         {
-            string original = list.ToString().Substring(start, length);
+            //string original = list.ToString().Substring(start, length);
+            int[] original = new int[length];
+
+            Array.Copy(list, start, original, 0, length);
+
             for (int i = start, j = original.Length - 1; i < length + start; i++, j--)
             {
                 list[i] = original[j];
@@ -33,24 +32,33 @@ namespace Task1
             {
                 string currentTestResult = "Case #" + (i + 1) + ": ";
 
-                int N = Convert.ToInt32(Console.ReadLine());
-                list = new StringBuilder(Console.ReadLine().Replace(" ", string.Empty));
+                Console.ReadLine(); // Just read (and discard) the N supplied
+                var inputNumbers = Console.ReadLine().Split(' ');
+                list = new int[inputNumbers.Length];
+                for (int j = 0; j < inputNumbers.Length; j++)
+                {
+                    list[j] = Convert.ToInt32(inputNumbers[j]);
+                }
 
                 int cost = 0;
                 for (int j = 0;  j < list.Length - 1;  j++)
                 {
-                    string listString = list.ToString();
-                    int minE = listString.IndexOf(listString.Substring(j, listString.Length - j).Min());
+                    //int minE = listString.IndexOf(listString.Substring(j, listString.Length - j).Min());
+                    int[] subArray = new int[list.Length - j];
+                    
+                    Array.Copy(list, j, subArray, 0, list.Length - j);
+                    //Array.Copy(list, start, original, 0, length);
 
-                    if(minE == j)
+                    int minE = Array.IndexOf(subArray, subArray.Min());
+
+                    if (minE == 0)
                     {
                         cost++;
                         continue;
                     }
 
-                    cost += minE - j + 1;
-                    Reverse(j, minE - j + 1);
-                    
+                    cost += minE + 1;
+                    Reverse(j, minE + 1);
                 }
 
                 currentTestResult += cost;
