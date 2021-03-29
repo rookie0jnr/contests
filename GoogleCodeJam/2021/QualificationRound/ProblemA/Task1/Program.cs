@@ -11,16 +11,13 @@ namespace Task1
 
         static void Reverse(int start, int length)
         {
-            //string original = list.ToString().Substring(start, length);
             int[] original = new int[length];
-
             Array.Copy(list, start, original, 0, length);
 
             for (int i = start, j = original.Length - 1; i < length + start; i++, j--)
             {
                 list[i] = original[j];
             }
-            
         }
 
         static void Main(string[] args)
@@ -43,11 +40,8 @@ namespace Task1
                 int cost = 0;
                 for (int j = 0;  j < list.Length - 1;  j++)
                 {
-                    //int minE = listString.IndexOf(listString.Substring(j, listString.Length - j).Min());
                     int[] subArray = new int[list.Length - j];
-                    
                     Array.Copy(list, j, subArray, 0, list.Length - j);
-                    //Array.Copy(list, start, original, 0, length);
 
                     int minE = Array.IndexOf(subArray, subArray.Min());
 
