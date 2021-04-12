@@ -53,8 +53,61 @@ namespace TrainTimetable
                     allTrips.Add(trip);
                 }
 
+                allTrips.Sort();
 
-                //currentTestResult += switches;
+                List<TimeSpan> trainsFromA = new List<TimeSpan>();
+                List<TimeSpan> trainsFromB = new List<TimeSpan>();
+                int neededTrainsFromA = 0;
+                int neededTrainsFromB = 0;
+
+                for (int j = 0; j < allTrips.Count; j++)
+                {
+                    TimeSpan currentArrivalTimePlusTurnaround = allTrips[j].Item2 + T;
+                    if (allTrips[j].Item3.Equals("A"))
+                    {
+                        bool isFound = false;
+                        foreach (var item in trainsFromA)
+                        {
+                            if (item <= allTrips[j].Item1)
+                            {
+                                allTrips.RemoveAt(j);
+                                trainsFromA.Remove(item);
+                                j--;
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            neededTrainsFromA++;
+                        }
+
+                        trainsFromB.Add(currentArrivalTimePlusTurnaround);
+                    }
+                    else
+                    {
+                        bool isFound = false;
+                        foreach (var item in trainsFromB)
+                        {
+                            if (item <= allTrips[j].Item1)
+                            {
+                                allTrips.RemoveAt(j);
+                                trainsFromB.Remove(item);
+                                j--;
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            neededTrainsFromB++;
+                        }
+
+                        trainsFromA.Add(currentArrivalTimePlusTurnaround);
+                    }
+                }
+
+                currentTestResult += $"{neededTrainsFromA} {neededTrainsFromB}";
                 results.Add(currentTestResult);
             }
 
