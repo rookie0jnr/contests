@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TrainTimetable
 {
@@ -15,10 +16,10 @@ namespace TrainTimetable
             {
                 string currentTestResult = "Case #" + (i + 1) + ": ";
 
-                TimeSpan T = new TimeSpan(0, Convert.ToInt32(Console.ReadLine()), 0);
-                var NANB = Console.ReadLine().Split(' ');
-                int NA = Convert.ToInt32(NANB[0]);
-                int NB = Convert.ToInt32(NANB[1]);
+                TimeSpan T = TimeSpan.FromMinutes(Convert.ToDouble(Console.ReadLine()));
+                var NAandNB = Console.ReadLine().Split(' ');
+                int NA = Convert.ToInt32(NAandNB[0]);
+                int NB = Convert.ToInt32(NAandNB[1]);
                 List<Tuple<TimeSpan, TimeSpan, string>> allTrips = new List<Tuple<TimeSpan, TimeSpan, string>>();
 
                 string currentTrip;
@@ -31,7 +32,7 @@ namespace TrainTimetable
                     Tuple<TimeSpan, TimeSpan, string> trip =
                         new Tuple<TimeSpan, TimeSpan, string>
                         (
-                            new TimeSpan(Convert.ToInt32(startEnd[0].Split(':')[0]), Convert.ToInt32(startEnd[0].Split(':')[1]),0),
+                            new TimeSpan(Convert.ToInt32(startEnd[0].Split(':')[0]), Convert.ToInt32(startEnd[0].Split(':')[1]), 0),
                             new TimeSpan(Convert.ToInt32(startEnd[1].Split(':')[0]), Convert.ToInt32(startEnd[1].Split(':')[1]), 0),
                             "A"                          
                         );
@@ -65,44 +66,32 @@ namespace TrainTimetable
                     TimeSpan currentArrivalTimePlusTurnaround = allTrips[j].Item2 + T;
                     if (allTrips[j].Item3.Equals("A"))
                     {
-                        bool isFound = false;
-                        foreach (var item in trainsFromA)
+                        var toReuse = trainsFromA.Where(train => train <= allTrips[j].Item1);
+                        if (toReuse.Count() > 0)
                         {
-                            if (item <= allTrips[j].Item1)
-                            {
-                                allTrips.RemoveAt(j);
-                                trainsFromA.Remove(item);
-                                j--;
-                                isFound = true;
-                                break;
-                            }
+                            trainsFromA.Remove(toReuse.First());
+                            allTrips.RemoveAt(j);
+                            j--;
                         }
-                        if (!isFound)
+                        else
                         {
                             neededTrainsFromA++;
                         }
-
                         trainsFromB.Add(currentArrivalTimePlusTurnaround);
                     }
                     else
                     {
-                        bool isFound = false;
-                        foreach (var item in trainsFromB)
+                        var toReuse = trainsFromB.Where(train => train <= allTrips[j].Item1);
+                        if (toReuse.Count() > 0)
                         {
-                            if (item <= allTrips[j].Item1)
-                            {
-                                allTrips.RemoveAt(j);
-                                trainsFromB.Remove(item);
-                                j--;
-                                isFound = true;
-                                break;
-                            }
+                            trainsFromB.Remove(toReuse.First());
+                            allTrips.RemoveAt(j);
+                            j--;
                         }
-                        if (!isFound)
+                        else
                         {
                             neededTrainsFromB++;
                         }
-
                         trainsFromA.Add(currentArrivalTimePlusTurnaround);
                     }
                 }
