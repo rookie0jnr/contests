@@ -13,47 +13,85 @@ namespace PunchedCards
 
             for (int i = 0; i < testCases; i++)
             {
-                string currentTestResult = $"Case #{(i + 1)}: ";
+                string currentTestResult = $"Case #{(i + 1)}: {Environment.NewLine}";
+                var input = Console.ReadLine().Split(' ');
+                int totalR = Convert.ToInt32(input[0]) * 2 + 1;
+                int totalC = Convert.ToInt32(input[1]) * 2 + 1;
 
-                var p1Inks = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
-                var p2Inks = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
-                var p3Inks = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
-                int[] availableInk = new int[4];
-                var c = new int[] { p1Inks[0], p2Inks[0], p3Inks[0] };
-                var m = new int[] { p1Inks[1], p2Inks[1], p3Inks[1] };
-                var y = new int[] { p1Inks[2], p2Inks[2], p3Inks[2] };
-                var k = new int[] { p1Inks[3], p2Inks[3], p3Inks[3] };
+                char[,] result = new char[totalR, totalC];
 
-                availableInk[0] = c.Min();
-                availableInk[1] = m.Min();
-                availableInk[2] = y.Min();
-                availableInk[3] = k.Min();
+                result[0, 0] = result[0, 1] = result[1, 0] = result[1, 1] = '.';
 
-                if (availableInk.Sum() < 1000000)
+                for (int j = 0; j < 2; j++)
                 {
-                    currentTestResult += "IMPOSSIBLE";
-                }
-                else
-                {
-                    int remainingInk = 1000000;
-                    foreach (var ink in availableInk)
+                    for (int k = 2; k < totalC; k++)
                     {
-                        if (remainingInk - ink > 0)
+                        if (j % 2 == 0)
                         {
-                            remainingInk -= ink;
-                            currentTestResult += ink + " ";
+                            if (k % 2 == 0)
+                            {
+                                result[j, k] = '+';
+                            }
+                            else
+                            {
+                                result[j, k] = '-';
+                            }
                         }
                         else
                         {
-                            currentTestResult += remainingInk + " ";
-                            remainingInk = 0;
+                            if (k % 2 == 0)
+                            {
+                                result[j, k] = '|';
+                            }
+                            else
+                            {
+                                result[j, k] = '.';
+                            }
                         }
                     }
                 }
 
+
+                for (int j = 2; j < totalR; j++)
+                {
+                    for (int k = 0; k < totalC; k++)
+                    {
+                        if (j % 2 == 0)
+                        {
+                            if (k % 2 == 0)
+                            {
+                                result[j, k] = '+';
+                            }
+                            else
+                            {
+                                result[j, k] = '-';
+                            }
+                        }
+                        else
+                        {
+                            if (k % 2 == 0)
+                            {
+                                result[j, k] = '|';
+                            }
+                            else
+                            {
+                                result[j, k] = '.';
+                            }
+                        }
+                    }
+                }
+
+                
+                for (int j = 0; j < totalR; j++)
+                {
+                    for (int k = 0; k < totalC; k++)
+                    {
+                        currentTestResult += result[j, k];
+                    }
+                    currentTestResult += Environment.NewLine;
+                }
                 results.Add(currentTestResult);
             }
-
 
             for (int i = 0; i < testCases; i++)
             {
