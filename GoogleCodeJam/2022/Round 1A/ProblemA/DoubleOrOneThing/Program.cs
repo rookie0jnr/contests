@@ -17,8 +17,23 @@ namespace DoubleOrOneThing
                 string currentTestResult = $"Case #{i + 1}: ";
 
                 string S = Console.ReadLine();
-                string result = S;
+                string result = S[S.Length - 1].ToString();
 
+                int charPosition = S.Length - 2;
+                while (charPosition >= 0)
+                {
+                    string one = S[charPosition] + result;
+                    string two = S[charPosition].ToString() + S[charPosition] + result;
+                    if (String.Compare(one, two) < 0)
+                    {
+                        result = one;
+                    }
+                    else
+                    {
+                        result = two;
+                    }
+                    charPosition--;
+                }
 
                 currentTestResult += result;
                 results.Add(currentTestResult);
