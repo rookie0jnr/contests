@@ -1,0 +1,4 @@
+2022
+QualificationRound
+ - 	Problem E, Twisty Little Passages, https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a45fc0
+	This seems UNSOLVABLE!!!
