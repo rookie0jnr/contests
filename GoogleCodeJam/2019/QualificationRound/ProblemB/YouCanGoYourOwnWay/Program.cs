@@ -49,14 +49,14 @@ namespace YouCanGoYourOwnWay
                     lp++;
                 }
 
-                for (int k = 0; k < N; k++)
-                {
-                    for (int l = 0; l < N; l++)
-                    {
-                        Console.Write(maze[k, l].ToString() + ' ');
-                    }
-                    Console.WriteLine();
-                }
+                //for (int k = 0; k < N; k++)
+                //{
+                //    for (int l = 0; l < N; l++)
+                //    {
+                //        Console.Write(maze[k, l].ToString() + ' ');
+                //    }
+                //    Console.WriteLine();
+                //}
 
                 string myWay = string.Empty;
                 i = 0;
@@ -64,31 +64,56 @@ namespace YouCanGoYourOwnWay
                 lp = 0;
                 if (shouldReachLastColumn)
                 {
-                    while (j <= N - 1)
+                    while (j < N - 1)
                     {
-                        if (maze[i, j] == 'S')
+                        if (maze[i, j] == 'E')
+                        {
+                            maze[i, j] = 'D';
+                            myWay += 'S';
+                            i++;
+                        }
+                        else
                         {
                             maze[i, j] = 'R';
                             myWay += 'E';
                             j++;
                         }
-                        else if (maze[i, j] == 'E')
+                    }
+                    while (i < N -1)
+                    {
+                        myWay += 'S';
+                        maze[i, j] = 'D';
+                        i++;
+                    }
+                }
+                else
+                {
+                    while (i < N - 1)
+                    {
+                        if (maze[i, j] == 'S')
+                        {
+                            maze[i, j] = 'L';
+                            myWay += 'E';
+                            j++;
+                        }
+                        else
                         {
                             maze[i, j] = 'D';
                             myWay += 'S';
                             i++;
                         }
                     }
-                    while (i <= N -1)
+                    while (j < N - 1)
                     {
-                        myWay += 'S';
-                        maze[i, j] = 'D';
-                        i++;
+                        myWay += 'E';
+                        maze[i, j] = 'L';
+                        j++;
                     }
 
                 }
 
-                //currentTestResult += counter;
+
+                currentTestResult += myWay;
                 results.Add(currentTestResult);
             }
 
