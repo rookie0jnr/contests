@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Numerics;
+using System.Text;
 
 namespace YouCanGoYourOwnWay
 {
@@ -19,15 +18,6 @@ namespace YouCanGoYourOwnWay
                 int N = Convert.ToInt32(Console.ReadLine());
                 string LyndaPath = Console.ReadLine();
 
-                //char[,] maze = new char[N, N];
-                //for(int k = 0; k < N; k++)
-                //{
-                //    for (int l = 0; l < N; l++)
-                //    {
-                //        maze[k, l] = ' ';
-                //    }
-                //}
-
                 bool shouldReachLastColumn = false;
                 if (LyndaPath[LyndaPath.Length - 1] == 'E')
                 {
@@ -39,7 +29,6 @@ namespace YouCanGoYourOwnWay
                 int i = 0, j = 0, lp = 0;
                 while (lp < LyndaPath.Length)
                 {
-                    //maze[i, j] = LyndaPath[lp];
                     if (LyndaPath[lp] == 'E')
                     {
                         if (shouldReachLastColumn)
@@ -59,41 +48,28 @@ namespace YouCanGoYourOwnWay
                     lp++;
                 }
 
-                //for (int k = 0; k < N; k++)
-                //{
-                //    for (int l = 0; l < N; l++)
-                //    {
-                //        Console.Write(maze[k, l].ToString() + ' ');
-                //    }
-                //    Console.WriteLine();
-                //}
-
-                string myWay = string.Empty;
+                StringBuilder myWay = new StringBuilder();
                 i = 0;
                 j = 0;
-                lp = 0;
                 if (shouldReachLastColumn)
                 {
                     while (j < N - 1)
                     {
                         if (forbidden.Contains((i, j)))
                         {
-                            //maze[i, j] = 'D';
                             forbidden.Remove((i, j));
-                            myWay += 'S';
+                            myWay.Append('S');
                             i++;
                         }
                         else
                         {
-                            //maze[i, j] = 'R';
-                            myWay += 'E';
+                            myWay.Append('E');
                             j++;
                         }
                     }
                     while (i < N -1)
                     {
-                        myWay += 'S';
-                        //maze[i, j] = 'D';
+                        myWay.Append('S');
                         i++;
                     }
                 }
@@ -103,32 +79,26 @@ namespace YouCanGoYourOwnWay
                     {
                         if (forbidden.Contains((i, j)))
                         {
-                            //maze[i, j] = 'L';
                             forbidden.Remove((i, j));
-                            myWay += 'E';
+                            myWay.Append('E');
                             j++;
                         }
                         else
                         {
-                            //maze[i, j] = 'D';
-                            myWay += 'S';
+                            myWay.Append('S');
                             i++;
                         }
                     }
                     while (j < N - 1)
                     {
-                        myWay += 'E';
-                        //maze[i, j] = 'L';
+                        myWay.Append('E');
                         j++;
                     }
-
                 }
 
-
-                currentTestResult += myWay;
+                currentTestResult += myWay.ToString();
                 results.Add(currentTestResult);
             }
-
 
             for (int i = 0; i < testCases; i++)
             {
