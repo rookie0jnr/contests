@@ -23,24 +23,49 @@ namespace Task2
 
                 StringBuilder mural = new StringBuilder(input[2]);
                 string muralString = mural.ToString();
-                if (muralString.StartsWith('?'))
+                if (CJcost > 0 && JCcost > 0)
                 {
-                    char startChar = 'C';
-                    if (muralString.IndexOf('C') > -1 && muralString.IndexOf('J') > -1 && muralString.IndexOf('J') < muralString.IndexOf('C')
-                        || (muralString.IndexOf('C') == -1 && muralString.IndexOf('J') > -1))
+                    if (muralString.StartsWith('?'))
                     {
-                        startChar = 'J';
+                        char startChar = 'C';
+                        if (muralString.IndexOf('C') > -1 && muralString.IndexOf('J') > -1 && muralString.IndexOf('J') < muralString.IndexOf('C')
+                            || (muralString.IndexOf('C') == -1 && muralString.IndexOf('J') > -1))
+                        {
+                            startChar = 'J';
+                        }
+                        mural[0] = startChar;
                     }
-                    mural[0] = startChar;
+                    int currentQMIndex = 1;
+                    while (mural.ToString().Contains('?'))
+                    {
+                        if (mural[currentQMIndex] == '?')
+                            mural[currentQMIndex] = mural[currentQMIndex - 1];
+                        currentQMIndex++;
+                    }
+
+                }
+                else
+                { // negative cost
+                    if (muralString.StartsWith('?'))
+                    {
+                        char startChar = 'C';
+                        if (muralString.IndexOf('C') > -1 && muralString.IndexOf('J') > -1 && muralString.IndexOf('J') < muralString.IndexOf('C')
+                            || (muralString.IndexOf('C') == -1 && muralString.IndexOf('J') > -1))
+                        {
+                            startChar = 'J';
+                        }
+                        mural[0] = startChar;
+                    }
+                    int currentQMIndex = 1;
+                    while (mural.ToString().Contains('?'))
+                    {
+                        if (mural[currentQMIndex] == '?')
+                            mural[currentQMIndex] = mural[currentQMIndex - 1];
+                        currentQMIndex++;
+                    }
+
                 }
 
-                int currentQMIndex = 1;
-                while (mural.ToString().Contains('?'))
-                {
-                    if (mural[currentQMIndex] == '?')
-                        mural[currentQMIndex] = mural[currentQMIndex - 1];
-                    currentQMIndex++;
-                }
 
                 int total = 0;
                 total += Regex.Matches(mural.ToString(), "CJ").Count() * CJcost;
