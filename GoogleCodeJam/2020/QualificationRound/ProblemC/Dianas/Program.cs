@@ -14,8 +14,8 @@ namespace Parenting
             int testCases = Convert.ToInt32(Console.ReadLine());
             for (int t = 0; t < testCases; t++)
             {
-                int C = 0;
-                int J = 0;
+                int CameronSTime = 0;
+                int JamieSTime = 0;
                 List<Tuple<int, int, int>> listTuples = new List<Tuple<int, int, int>>();
 
                 int activities = Convert.ToInt32(Console.ReadLine());
@@ -28,23 +28,23 @@ namespace Parenting
                 string[] parents = new string[listTuples.Count];
                 for (int i = 0; i < listTuples.Count; i++)
                 {
-                    if (C > listTuples[i].Item1 && J > listTuples[i].Item1)
+                    if (CameronSTime > listTuples[i].Item1 && JamieSTime > listTuples[i].Item1)
                     {
-                        parents = null;
+                        parents = new string[] { "IMPOSSIBLE" };
                         break;
                     }
                     else
                     {
-                        if (C <= listTuples[i].Item1 || J <= listTuples[i].Item1)
+                      //  if (CameronStartTime <= listTuples[i].Item1 || JamieStartTime <= listTuples[i].Item1)
                         {
-                            if (C == Math.Min(C, J))
+                            if (CameronSTime <= listTuples[i].Item1) // == Math.Min(CameronStartTime, JamieStartTime))
                             {
-                                C = listTuples[i].Item2;
+                                CameronSTime = listTuples[i].Item2;
                                 parents[listTuples[i].Item3] = "C";
                             }
                             else
                             {
-                                J = listTuples[i].Item2;
+                                JamieSTime = listTuples[i].Item2;
                                 parents[listTuples[i].Item3] = "J";
                             }
                         }
