@@ -14,16 +14,38 @@ namespace SenateEvacuation
 
             for (int tcIndex = 0; tcIndex < testCases; tcIndex++)
             {
-                string currentTestResult = $"Case #{tcIndex + 1}: ";
-                var dn = Console.ReadLine().Split(' ');
+                int N = Convert.ToInt32(Console.ReadLine());
+                int[] senatorsRaw = Array.ConvertAll(Console.ReadLine().Split(" "), int.Parse);
+                SortedSet<(int numberOfSenators, string partyName)> senators =
+                    new SortedSet<(int numberOfSenators, string partyName)>();
 
+                char partyName = 'A';
+                for (int i = 0; i < senatorsRaw.Length; i++)
+                {
+                    senators.Add((senatorsRaw[i], partyName.ToString()));
+                    partyName++;
+                }
+
+                while (senators.Count > 0)
+                {
+                    if (senators.Max.numberOfSenators >= 2)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+                string currentTestResult = $"Case #{tcIndex + 1}: ";
                 //currentTestResult += (D / times.Max()).ToString("F6");
                 results.Add(currentTestResult);
             }
 
-            for (int i = 0; i < testCases; i++)
+            foreach (var item in results)
             {
-                Console.WriteLine(results[i]);
+                Console.WriteLine(item);
             }
         }
     }
