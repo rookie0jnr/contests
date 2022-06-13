@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30001.183
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestingDepth", "NestingDepth.csproj", "{6504991A-D363-4B18-BBA6-117241635562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dianas", "..\Dianas\Dianas.csproj", "{A50B8D54-AEAA-4547-8566-7537FC69CAD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6504991A-D363-4B18-BBA6-117241635562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6504991A-D363-4B18-BBA6-117241635562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6504991A-D363-4B18-BBA6-117241635562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50B8D54-AEAA-4547-8566-7537FC69CAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50B8D54-AEAA-4547-8566-7537FC69CAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50B8D54-AEAA-4547-8566-7537FC69CAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50B8D54-AEAA-4547-8566-7537FC69CAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
