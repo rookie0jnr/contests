@@ -111,7 +111,7 @@ namespace SenateEvacuation
                 }
 
                 //currentTestResult += (D / times.Max()).ToString("F6");
-                results.Add(currentTestResult);
+                results.Add(currentTestResult.TrimEnd());
             }
 
             foreach (var item in results)
