@@ -26,7 +26,7 @@ namespace SenateEvacuation
                     partyName++;
                 }
 
-                
+
                 int totalSenators = senatorsRaw.Sum();
                 string currentTestResult = $"Case #{tcIndex + 1}: ";
 
@@ -36,8 +36,8 @@ namespace SenateEvacuation
                     int largestGroup = senators.ElementAt(senators.Count - 1).numberOfSenators;
                     int secondGroup = senators.ElementAt(senators.Count - 2).numberOfSenators;
                     int halfSenators = (totalSenators - 2) / 2;
-                    if ( largestGroup - 2 <= halfSenators  
-                        && secondGroup <= halfSenators) 
+                    if (largestGroup - 2 <= halfSenators
+                        && secondGroup <= halfSenators)
                     {
                         var largest = senators.ElementAt(senators.Count - 1);
                         senators.Remove(largest);
@@ -47,6 +47,26 @@ namespace SenateEvacuation
                         currentTestResult += $"{largest.partyName}{largest.partyName}";
                     }
                     // Can I remove 1 from the 2 biggest groups?
+                    else if (senators.Count > 2
+                        && (largestGroup - 1 <= halfSenators
+                        && secondGroup - 1 <= halfSenators
+                        && senators.ElementAt(senators.Count - 3).numberOfSenators <= halfSenators))
+                    {
+                        var second = senators.ElementAt(senators.Count - 2);
+                        senators.Remove(second);
+                        second.numberOfSenators--;
+                        senators.Add(second);
+
+                        var largest = senators.ElementAt(senators.Count - 1);
+                        senators.Remove(largest);
+                        largest.numberOfSenators--;
+                        senators.Add(largest);
+
+
+                        totalSenators -= 2;
+                        currentTestResult += $"{largest.partyName}{second.partyName} ";
+
+                    }
                     else if (largestGroup - 1 <= halfSenators
                         && secondGroup - 1 <= halfSenators)
                     {
@@ -59,11 +79,12 @@ namespace SenateEvacuation
                         senators.Remove(largest);
                         largest.numberOfSenators--;
                         senators.Add(largest);
-                        
+
 
                         totalSenators -= 2;
                         currentTestResult += $"{largest.partyName}{second.partyName} ";
                     }
+
                     // I can remove only 1 from the largest group!
                     else
                     {
