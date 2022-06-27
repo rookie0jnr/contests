@@ -36,15 +36,17 @@ namespace SenateEvacuation
                     int largestGroup = senators.ElementAt(senators.Count - 1).numberOfSenators;
                     int secondGroup = senators.ElementAt(senators.Count - 2).numberOfSenators;
                     int halfSenators = (totalSenators - 2) / 2;
+                    
                     if (largestGroup - 2 <= halfSenators
                         && secondGroup <= halfSenators)
                     {
                         var largest = senators.ElementAt(senators.Count - 1);
                         senators.Remove(largest);
-                        senators.Add((largestGroup - 2, senators.ElementAt(senators.Count - 1).partyName));
+                        largest.numberOfSenators -= 2;
+                        senators.Add(largest);
 
                         totalSenators -= 2;
-                        currentTestResult += $"{largest.partyName}{largest.partyName}";
+                        currentTestResult += $"{largest.partyName}{largest.partyName} ";
                     }
                     // Can I remove 1 from the 2 biggest groups?
                     else if (senators.Count > 2
@@ -67,8 +69,9 @@ namespace SenateEvacuation
                         currentTestResult += $"{largest.partyName}{second.partyName} ";
 
                     }
-                    else if (largestGroup - 1 <= halfSenators
-                        && secondGroup - 1 <= halfSenators)
+                    else if ( senators.Count == 2 
+                        && (largestGroup - 1 <= halfSenators
+                        && secondGroup - 1 <= halfSenators))
                     {
                         var second = senators.ElementAt(senators.Count - 2);
                         senators.Remove(second);
@@ -90,19 +93,20 @@ namespace SenateEvacuation
                     {
                         var largest = senators.ElementAt(senators.Count - 1);
                         senators.Remove(largest);
-                        senators.Add((largestGroup - 1, senators.ElementAt(senators.Count - 1).partyName));
+                        largest.numberOfSenators--;
+                        senators.Add(largest);
 
                         totalSenators -= 1;
-                        currentTestResult += $"{largest.partyName}";
+                        currentTestResult += $"{largest.partyName} ";
                     }
 
-                    if (senators.ElementAt(senators.Count - 1).numberOfSenators == 0)
+                    for (int i = 0; i < senators.Count; i++)
                     {
-                        senators.Remove(senators.ElementAt(senators.Count - 1));
-                    }
-                    if (senators.ElementAt(senators.Count - 1).numberOfSenators == 0)
-                    {
-                        senators.Remove(senators.ElementAt(senators.Count - 1));
+                        if (senators.ElementAt(i).numberOfSenators == 0)
+                        {
+                            senators.Remove(senators.ElementAt(i));
+                            i--;
+                        }
                     }
                 }
 
