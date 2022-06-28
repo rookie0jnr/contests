@@ -14,7 +14,7 @@ namespace SenateEvacuation
 
             for (int tcIndex = 0; tcIndex < testCases; tcIndex++)
             {
-                int N = Convert.ToInt32(Console.ReadLine());
+                Convert.ToInt32(Console.ReadLine());
                 int[] senatorsRaw = Array.ConvertAll(Console.ReadLine().Split(" "), int.Parse);
                 SortedSet<(int numberOfSenators, string partyName)> senators =
                     new SortedSet<(int numberOfSenators, string partyName)>();
@@ -38,7 +38,8 @@ namespace SenateEvacuation
                     int secondGroup = senators.ElementAt(senators.Count - 2).numberOfSenators;
                     int halfSenators = (totalSenators - 2) / 2;
                     
-                    if (largestGroup - 2 <= halfSenators
+                    if (largestGroup >= 2
+                        && largestGroup - 2 <= halfSenators
                         && secondGroup <= halfSenators)
                     {
                         var largest = senators.ElementAt(senators.Count - 1);
