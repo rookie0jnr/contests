@@ -1,0 +1,160 @@
+ssh bandit.labs.overthewire.org -p 2220 -l bandit19
+
+
+bandit0 -> bandit 1
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+
+bandit1 -> bandit2
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+
+bandit2 -> bandit3
+aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+
+bandit3 -> bandit4
+file ./*
+2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+
+bandit4 -> bandit5
+find . -type f ! -executable
+find . -type f -exec file '{}' \;
+find . -type f -size 1033c
+find . -type f ! -executable -size 1033c -exec file '{}' \;
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+
+bandit5 -> bandit6
+find . -size 33c -group bandit6 -user bandit7
+find . -size 33c -group bandit6 -user bandit7 2>/dev/null
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+
+bandit6 -> bandit7
+z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+
+bandit7 -> bandit8
+grep millionth ./*
+TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+
+bandit8 -> bandit9
+sort ./data.txt | uniq -u
+EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+
+bandit9 -> bandit10
+strings ./data.txt | grep ======
+G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+
+bandit10 -> bandit11
+cat ./data.txt | base64 -d
+6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+
+bandit11 -> bandit12
+cat ./data.txt | tr a-zA-Z n-za-mN-ZA-M
+JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+
+bandit12 -> bandit13
+cp /home/bandit12/data.txt .
+xxd -r ./data.txt ./1.gz
+gzip -d 1.gz
+bzip2 -d ./1
+tar -xf 1.tar
+wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+
+bandit13 -> bandit14
+ssh bandit14@localhost -p 2220 -i ./sshkey.private
+fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+
+bandit14 -> bandit15
+nc localhost 30000
+jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+
+bandit15 -> bandit16
+openssl s_client localhost:30001
+JQttfApK4SeyHwDlI9SXGR50qclOAil1
+
+bandit16 -> bandit17
+nmap -p 31000-32000 localhost
+PORT      STATE SERVICE
+31046/tcp open  unknown - NOT
+31518/tcp open  unknown - SSL?
+31691/tcp open  unknown - SSL?
+31790/tcp open  unknown - SSL?
+31960/tcp open  unknown - NOT
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+
+bandit17 -> bandit18
+diff passwords.old passwords.new
+hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+
+bandit18 -> bandit19
+ssh bandit.labs.overthewire.org -p 2220 -l bandit18 cat ./readme
+awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+
+bandit19 -> bandit20
+./bandit20-do cat /etc/bandit_pass/bandit20
+VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+
+bandit20 -> bandit21
+ncat --listen 31335 (or any free port)
+./suconnect 31335
+send password through the netcat
+NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+
+bandit21 -> bandit22
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+
+bandit22 -> bandit23
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+cd /tmp
+mkdir tt
+cd tt
+cp /usr/bin/cronjob_bandit23.sh .
+nano cronjob_bandit23.sh
+#!/bin/bash
+
+myname="bandit23"
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+! SAVE as new_cronjob_bandit23.sh
+chmod u+x new_cronjob_bandit23.sh
+./new_cronjob_bandit23.sh
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+	
+QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+!!! NEED to read carefully /usr/bin/cronjob_bandit23.sh !!!
+
+
+Bandit23 -> Bandit24
+
+ssh bandit.labs.overthewire.org -p 2220 -l bandit23
+
