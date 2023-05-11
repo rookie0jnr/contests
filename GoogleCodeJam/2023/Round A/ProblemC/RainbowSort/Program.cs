@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace RainbowSort
 {
@@ -19,7 +20,8 @@ namespace RainbowSort
                 HashSet<string> colors = new HashSet<string>();
                 string previousColor = input[0];
                 colors.Add(previousColor);
-                string currentSequence = previousColor;
+                StringBuilder currentSequence = new StringBuilder(previousColor);
+                //currentSequence.Append(previousColor);
 
                 for (int j = 1; j < input.Length; j++)
                 {
@@ -28,13 +30,13 @@ namespace RainbowSort
                     {
                         if (colors.Contains(currentColor))
                         {
-                            currentSequence = "IMPOSSIBLE";
+                            currentSequence = new StringBuilder("IMPOSSIBLE");
                             break;
                         }
                         else
                         {
                             colors.Add(currentColor);
-                            currentSequence += $" {currentColor}";
+                            currentSequence.Append($" {currentColor}");
                             previousColor = currentColor;
                         }
 
