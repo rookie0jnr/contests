@@ -226,4 +226,40 @@ ssh bandit.labs.overthewire.org -p 2220 -l bandit26
 YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
 
 Bandit27 - Bandit28
-ssh bandit.labs.overthewire.org -p 2220 -l bandit27
+// make new folder inside /tmp
+git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo	
+
+AVanL161y9rsbcJIsFHuw35rjaOM19nR
+
+Bandit28 - Bandit29
+// make new folder inside /tmp
+git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+git log -p -1
+
+tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+
+Bandit29 - Bandit30
+git clone -b dev ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+// The password is visible only in the DEV branch
+
+xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+
+Bandit30 - Bandit31
+git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+git tag
+git show secret
+
+OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+
+Bandit31 -Bandit32
+git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+nano key.txt
+May I come in?
+
+git add key.txt -f
+git commit
+git push
+
+rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+
+Bandit32 - Bandit33
