@@ -263,3 +263,12 @@ git push
 rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
 
 Bandit32 - Bandit33
+$0
+cat /etc/bandit_pass/bandit33
+
+odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
+
+Bandit33 - 
+ssh bandit.labs.overthewire.org -p 2220 -l bandit33
+cat ./README
+END!!!
