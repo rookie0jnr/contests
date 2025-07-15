@@ -1,6 +1,8 @@
-ssh leviathan.labs.overthewire.org -p 2223 -l leviathan0
+ssh leviathan.labs.overthewire.org -p 2223 -l leviathan1
 
 
 leviathan 0 -> leviathan 1
 grep "leviathan" .backup/bookmarks.html
 3QJ3TgzHDq
+
+leviathan 1 -> leviathan 2
