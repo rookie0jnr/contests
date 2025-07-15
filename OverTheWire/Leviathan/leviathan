@@ -1,1 +1,8 @@
+ssh bandit.labs.overthewire.org -p 2220 -l bandit19
 
+
+bandit0 -> bandit 1
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+
+bandit1 -> bandit2
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
