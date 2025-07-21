@@ -6,3 +6,12 @@ grep "leviathan" .backup/bookmarks.html
 3QJ3TgzHDq
 
 leviathan 1 -> leviathan 2
+ltrace ./check
+look for the {strcmp("xxx", "sex")} value!
+It seems that "sex" is the password.
+Once we use this password we get a shell with leviathan2 user
+and simply cat the password file for leviathan2:
+cat /etc/leviathan_pass/leviathan2
+NsN1HwFoyN
+
+leviathan 2 -> leviathan3
